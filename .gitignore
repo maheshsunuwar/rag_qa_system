@@ -1,3 +1,28 @@
+# Custom
+# Ignore Python cache and virtual environments
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.venv/
+env/
+venv/
+rag-env/
+
+# Ignore environment variables
+.env
+
+# Ignore IDE/editor configs
+.vscode/
+.idea/
+
+# Ignore system files
+.DS_Store
+
+# Ignore FAISS index files (if generated locally)
+*.faiss
+*.pkl
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
