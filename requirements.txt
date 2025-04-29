@@ -6,3 +6,5 @@ ollama
 faiss-cpu
 tiktoken
 python-dotenv
+# pymupdf
+pypdf

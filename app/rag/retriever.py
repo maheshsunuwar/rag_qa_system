@@ -22,7 +22,7 @@ def retrieve_docs(vector_store, query, k = 3):
         base_url=config.OLLAMA_URL,
         model=config.OLLAMA_MODEL
     )
-    response = ollama_embeddings.embed_query(query)
+    # response = ollama_embeddings.embed_query(query)
 
     # perform similarity search on the FAISS index
     docs = vector_store.similarity_search(query, k)
