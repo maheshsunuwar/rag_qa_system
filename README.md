@@ -6,7 +6,7 @@ Welcome to my project! This is a lightweight Retrieval-Augmented Generation (RAG
 - Retrieve top-k relevant contexts based on semantic similarity
 - Answer user questions grounded on retrieved documents
 - Streamlit Frontend for interactive querying
-- OpenAI Embeddings + GPT-3.5 Turbo for best results
+- Embedding and Inference from Ollama models
 - Modular design for easy extensions and improvements
 
 ## Technologies Used
@@ -62,16 +62,13 @@ streamlit run app/main.py
 
 ## How It Works
 - Ingest Documents → Split into smaller chunks
-- Embed Documents → Using OpenAI Embeddings
+- Embed Documents → Using Ollama Embeddings
 - Store Embeddings → In FAISS vector database
 - Retrieve Relevant Chunks → Based on user question
-- Generate Answer → Using GPT-3.5 Turbo based on retrieved context
+- Generate Answer → Using llama3.2 based on retrieved context
 
 ## Future Enhancements
 - Upload and ingest PDFs and Docs
 - Fine-tune retrieval for domain-specific datasets
 - Add evaluation metrics (e.g., retrieval precision, latency)
 - Deploy live on HuggingFace Spaces or AWS
-
-🙋‍♂️ About Me
-I'm Mahesh Sunuwar — a passionate machine learning engineer specializing in  RAG systems, LLMs, and MLOps!
