@@ -1,7 +1,7 @@
 
 from langchain_ollama import ChatOllama
 
-import config
+from app import config
 
 def generate_answer(retrieved_docs, question):
     context = '\n\n'.join(retrieved_docs)

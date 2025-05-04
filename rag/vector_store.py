@@ -9,7 +9,7 @@ from langchain_community.docstore.in_memory import InMemoryDocstore
 
 # from langchain.embeddings import Embeddings
 import faiss
-import config
+from app import config
 import pickle
 
 def load_pdf(uploaded_pdf):
@@ -40,9 +40,9 @@ def create_vector_store(documents=None, uploaded_pdf= None, save_path="faiss_ind
     # text_splitter = CharacterTextSplitter()
 
     text_splitter = RecursiveCharacterTextSplitter(
-        separators=["\n\n", "\n", r"(?<=[.?!])\s+"],  # Define separators, including regex
-        chunk_size=1000,  # Maximum chunk size
-        chunk_overlap=100,  # Overlap between chunks
+        # separators=["\n\n", "\n", r"(?<=[.?!])\s+"],  # Define separators, including regex
+        chunk_size=5000,  # Maximum chunk size
+        chunk_overlap=500,  # Overlap between chunks
         is_separator_regex=True  # Treat separators as regular expressions
     )
 

@@ -8,3 +8,4 @@ tiktoken
 python-dotenv
 # pymupdf
 pypdf
+fuzzywuzzy

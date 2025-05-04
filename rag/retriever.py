@@ -2,7 +2,8 @@ from langchain.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings
 import numpy as np
 # from ollama import embed
-import config
+from app import config
+from fuzzywuzzy import fuzz
 
 def retrieve_docs(vector_store, query, k = 3):
     """
@@ -17,11 +18,11 @@ def retrieve_docs(vector_store, query, k = 3):
     - A list of the top-k most relevant documents.
     """
 
-    # convert the query into embeddings using ollama
-    ollama_embeddings = OllamaEmbeddings(
-        base_url=config.OLLAMA_URL,
-        model=config.OLLAMA_MODEL
-    )
+    # # convert the query into embeddings using ollama
+    # ollama_embeddings = OllamaEmbeddings(
+    #     base_url=config.OLLAMA_URL,
+    #     model=config.OLLAMA_MODEL
+    # )
     # response = ollama_embeddings.embed_query(query)
 
     # perform similarity search on the FAISS index
@@ -30,4 +31,19 @@ def retrieve_docs(vector_store, query, k = 3):
     # retrieve the documents corresponding to the indices
     # docs = [vector_store.docs[i] for i in docs]
 
+    # if retrieved docs are not enough, do a fuzzy search
+    # if len(docs) < k:
+    #     docs = fuzzy_search(query=query, documents=docs)
+
     return [doc.page_content for doc in docs]
+
+# If fuzzy search or phrase matching is required, we can use the fuzzy_search helper
+def fuzzy_search(query, documents, threshold = 0.7):
+    results = []
+
+    for doc in documents:
+        similarity = fuzz.partial_ratio(query.lower(), doc.page_content.lower())
+
+        if similarity >=threshold*100:
+            results.append(doc)
+    return results
