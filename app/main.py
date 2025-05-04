@@ -6,6 +6,8 @@ from rag.retriever import retrieve_docs
 
 import fitz # pymupdf
 
+st.set_page_config(page_title="Chat with PDF")
+
 def extract_text_from_pdf(pdf_path):
     doc = fitz.open(pdf_path)
     text = ''
