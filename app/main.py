@@ -5,9 +5,9 @@ from rag.vector_store import create_vector_store
 from rag.retriever import retrieve_docs
 
 import fitz # pymupdf
-
 st.set_page_config(page_title="Chat with PDF")
 
+# @traceable
 def extract_text_from_pdf(pdf_path):
     doc = fitz.open(pdf_path)
     text = ''
@@ -16,6 +16,7 @@ def extract_text_from_pdf(pdf_path):
 
     return text
 
+# @traceable
 def evaluate_query(query, expected_answer, vector_store, llm_model):
     start_time = time.time()
 
@@ -33,9 +34,9 @@ def evaluate_query(query, expected_answer, vector_store, llm_model):
         'quality': quality
     }
 
-with open("data/docs/docs.txt", "r") as f:
-        documents = f.read()
-vector_store = create_vector_store(documents=documents)
+# with open("data/docs/docs.txt", "r") as f:
+#         documents = f.read()
+# vector_store = create_vector_store(documents=documents)
 # st.write(vector_store)
 st.write("Created new FAISS vector store.")
 
@@ -64,7 +65,7 @@ def app():
     if uploaded_pdf:
         with st.spinner('Processing PDF...'):
             vector_store = create_vector_store(uploaded_pdf=uploaded_pdf)
-            st.write(f"Loaded {len(documents)} pages from the PDF.")
+            st.write(f"PDF Loaded.")
             query = st.text_input('Ask a question:')
 
             if query:
