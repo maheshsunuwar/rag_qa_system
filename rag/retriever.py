@@ -1,9 +1,11 @@
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings
 import numpy as np
 # from ollama import embed
 from app import config
 from fuzzywuzzy import fuzz
+
+from langsmith import traceable
 
 def retrieve_docs(vector_store, query, k = 3):
     """

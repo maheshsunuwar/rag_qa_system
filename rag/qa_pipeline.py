@@ -1,5 +1,7 @@
 
 from langchain_ollama import ChatOllama
+# from langchain_core.tracers.context import tracing_v2_enabled
+from langsmith import traceable
 
 from app import config
 
@@ -16,6 +18,8 @@ def generate_answer(retrieved_docs, question):
         base_url=config.OLLAMA_URL,
         model='llama3.2:3b',
     )
+    # with tracing_v2_enabled(project_name='PDFChat'):
+
     response = llm.invoke(prompt)
     # return response
     return response.content

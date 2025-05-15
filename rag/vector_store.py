@@ -1,11 +1,14 @@
+from langsmith import traceable
 import numpy as np
 from langchain_ollama import OllamaEmbeddings
 from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
-from langchain.document_loaders import PyPDFLoader, PyMuPDFLoader
+# from langchain.document_loaders import PyPDFLoader, PyMuPDFLoader
+from langchain.document_loaders import PyMuPDFLoader
 import tempfile
 
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain_community.docstore.in_memory import InMemoryDocstore
+from langchain.schema import Document
 
 # from langchain.embeddings import Embeddings
 import faiss
@@ -28,7 +31,7 @@ def load_pdf(uploaded_pdf):
     print(documents[0].page_content)
     return documents[0].page_content
 
-
+@traceable
 def create_vector_store(documents=None, uploaded_pdf= None, save_path="faiss_index", ):
     ollama_embeddings = OllamaEmbeddings(
         base_url=config.OLLAMA_URL,
@@ -47,7 +50,11 @@ def create_vector_store(documents=None, uploaded_pdf= None, save_path="faiss_ind
     )
 
     texts = text_splitter.split_text(documents)
+    docs = [Document(page_content=text, metadata={}) for text in texts]
 
-    vector_store = FAISS.from_texts(texts=texts, embedding=ollama_embeddings)
+    vector_store = FAISS.from_documents(
+        documents=docs,
+        embedding=ollama_embeddings
+    )
 
     return vector_store
