@@ -52,7 +52,6 @@ pip install -r requirements.txt
 #### Create a .env file:
 ```
 If you use openai instead of ollama
-OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 ### Launch the app:
@@ -71,4 +70,4 @@ streamlit run app/main.py
 - Upload and ingest PDFs and Docs
 - Fine-tune retrieval for domain-specific datasets
 - Add evaluation metrics (e.g., retrieval precision, latency)
-- Deploy live on HuggingFace Spaces or AWS
+- Deploy live on HuggingFace Spaces/AWS/Azure/GCP/self deploy
