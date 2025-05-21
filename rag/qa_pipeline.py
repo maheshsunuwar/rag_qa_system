@@ -16,7 +16,7 @@ def generate_answer(retrieved_docs, question):
     # generate an answer using llama3.2:3b
     llm = ChatOllama(
         base_url=config.OLLAMA_URL,
-        model='llama3.2:3b',
+        model=config.OLLAMA_MODEL,
     )
     # with tracing_v2_enabled(project_name='PDFChat'):
 
