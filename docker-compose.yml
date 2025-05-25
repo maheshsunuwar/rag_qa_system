@@ -7,3 +7,9 @@ services:
     command: streamlit run app.py  --server.address 0.0.0.0 --server.port 8999 --server.fileWatcherType none
     ports:
       - "8999:8999"
+    environment:
+      - OLLAMA_MODEL=$OLLAMA_MODEL
+      - PDF_UPLOAD_PATH=$PDF_UPLOAD_PATH
+      - LANGSMITH_TRACING=$LANGSMITH_TRACING
+      - LANGSMITH_ENDPOINT=$LANGSMITH_ENDPOINT
+      - LANGSMITH_API_KEY=$LANGSMITH_API_KEY
