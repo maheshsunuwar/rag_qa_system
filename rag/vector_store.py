@@ -2,8 +2,7 @@ from langsmith import traceable
 import numpy as np
 from langchain_ollama import OllamaEmbeddings
 from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
-# from langchain.document_loaders import PyPDFLoader, PyMuPDFLoader
-from langchain.document_loaders import PyMuPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 import tempfile
 
 from langchain_community.vectorstores import FAISS

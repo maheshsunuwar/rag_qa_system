@@ -62,18 +62,20 @@ st.write("Created new FAISS vector store.")
 
 def app():
     uploaded_pdf = st.file_uploader("Upload a PDF document", type="pdf")
+    vector_store = None
     if uploaded_pdf:
         with st.spinner('Processing PDF...'):
-            vector_store = create_vector_store(uploaded_pdf=uploaded_pdf)
+            if not vector_store:
+                vector_store = create_vector_store(uploaded_pdf=uploaded_pdf)
             st.write(f"PDF Loaded.")
-            query = st.text_input('Ask a question:')
+        query = st.text_input('Ask a question:')
 
-            if query:
-                with st.spinner('Generating Answer...'):
-                    docs = retrieve_docs(vector_store=vector_store, query=query)
-                    answer = generate_answer(docs, query)
-                    st.subheader('Answer:')
-                    st.write(answer)
-                    st.subheader('Retrieved Context:')
-                    for doc in docs:
-                        st.write('- ', docs)
+        if query:
+            with st.spinner('Generating Answer...'):
+                docs = retrieve_docs(vector_store=vector_store, query=query)
+                answer = generate_answer(docs, query)
+                st.subheader('Answer:')
+                st.write(answer)
+                st.subheader('Retrieved Context:')
+                for doc in docs:
+                    st.write('- ', docs)
