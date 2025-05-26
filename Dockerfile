@@ -19,7 +19,6 @@ RUN uv pip install streamlit --system
 RUN uv pip install pydantic --system
 RUN uv pip install dotenv --system
 RUN uv pip install psycopg2-binary --system
-RUN uv pip install fitz --system
 RUN uv pip install langchain --system
 RUN uv pip install langchain-community --system
 RUN uv pip install langchain-ollama --system
@@ -28,9 +27,11 @@ RUN uv pip install faiss-cpu --system
 RUN uv pip install tiktoken --system
 RUN uv pip install python-dotenv --system
 RUN uv pip install pypdf --system
+RUN uv pip install PyMuPDF --system
 RUN uv pip install fuzzywuzzy --system
 RUN uv pip install langsmith --system
 RUN uv pip install pypdf --system
+RUN uv pip install tools --system
 
 # expose port
 EXPOSE 8999
