@@ -36,5 +36,8 @@ RUN uv pip install tools --system
 # expose port
 EXPOSE 8999
 
+# Health check with increased interval and retries
+HEALTHCHECK --timeout=10s --retries=5 CMD curl --fail https://pdfchat.machinelearningdev.com/_stcore/health || exit 1
+
 # # run fastapi server
 # CMD ["streamlit", "run", "app.py" "--server.address", "0.0.0.0", "--server.port", "8999"]
