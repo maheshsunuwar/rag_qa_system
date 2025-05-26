@@ -8,6 +8,7 @@ services:
     ports:
       - "8999:8999"
     environment:
+      - OLLAMA_URL=OLLAMA_URL
       - OLLAMA_MODEL=$OLLAMA_MODEL
       - PDF_UPLOAD_PATH=$PDF_UPLOAD_PATH
       - LANGSMITH_TRACING=$LANGSMITH_TRACING
