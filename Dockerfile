@@ -19,9 +19,25 @@ RUN uv pip install streamlit --system
 RUN uv pip install pydantic --system
 RUN uv pip install dotenv --system
 RUN uv pip install psycopg2-binary --system
+RUN uv pip install langchain --system
+RUN uv pip install langchain-community --system
+RUN uv pip install langchain-ollama --system
+RUN uv pip install ollama --system
+RUN uv pip install faiss-cpu --system
+RUN uv pip install tiktoken --system
+RUN uv pip install python-dotenv --system
+RUN uv pip install pypdf --system
+RUN uv pip install PyMuPDF --system
+RUN uv pip install fuzzywuzzy --system
+RUN uv pip install langsmith --system
+RUN uv pip install pypdf --system
+RUN uv pip install tools --system
 
 # expose port
 EXPOSE 8999
+
+# Health check with increased interval and retries
+HEALTHCHECK --timeout=10s --retries=5 CMD curl --fail https://pdfchat.machinelearningdev.com/_stcore/health || exit 1
 
 # # run fastapi server
 # CMD ["streamlit", "run", "app.py" "--server.address", "0.0.0.0", "--server.port", "8999"]
